@@ -50,7 +50,7 @@ static void * inspectiveC_loadFunctionNamed(const char *name) {
 static void inspectiveC_init() {
   static dispatch_once_t predicate;
   dispatch_once(&predicate, ^{
-      inspectiveC_Handle = dlopen("/usr/lib/libinspectivec.dylib", RTLD_NOW);
+      inspectiveC_Handle = dlopen("/var/jb/usr/lib/libinspectivec.dylib", RTLD_NOW);
 
       if (inspectiveC_Handle) {
         $setMaximumRelativeLoggingDepth = (inspectiveC_IntFuncT)inspectiveC_loadFunctionNamed("InspectiveC_setMaximumRelativeLoggingDepth");
