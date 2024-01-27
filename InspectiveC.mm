@@ -306,16 +306,16 @@ static FILE * newFileForThread() {
   pid_t pid = getpid();
   char path[MAX_PATH_LENGTH];
 
-  sprintf(path, "%s/InspectiveC", directory);
+  snprintf(path, sizeof path, "%s/InspectiveC", directory);
   mkdir(path, 0755);
-  sprintf(path, "%s/InspectiveC/%s", directory, exeName);
+  snprintf(path, sizeof path, "%s/InspectiveC/%s", directory, exeName);
   mkdir(path, 0755);
 
   if (pthread_main_np()) {
-    sprintf(path, "%s/InspectiveC/%s/%d_main.log", directory, exeName, pid);
+    snprintf(path, sizeof path, "%s/InspectiveC/%s/%d_main.log", directory, exeName, pid);
   } else {
     mach_port_t tid = pthread_mach_thread_np(pthread_self());
-    sprintf(path, "%s/InspectiveC/%s/%d_t%u.log", directory, exeName, pid, tid);
+    snprintf(path, sizeof path, "%s/InspectiveC/%s/%d_t%u.log", directory, exeName, pid, tid);
   }
   return fopen(path, "a");
 }
