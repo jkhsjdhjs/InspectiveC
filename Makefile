@@ -19,5 +19,8 @@ libinspectivec_FRAMEWORKS = Foundation UIKit
 include $(THEOS)/makefiles/common.mk
 include $(THEOS_MAKE_PATH)/library.mk
 
+# https://github.com/theos/theos/issues/481
+SHELL = /usr/bin/bash
+
 after-install::
 	install.exec "killall -9 SpringBoard"
